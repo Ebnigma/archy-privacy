@@ -1,7 +1,7 @@
 # Privacy Policy
 **Archy** - The Archer's best friend
 
-Last updated: 8 July 2026
+Last updated: 11 July 2026
 
 # Overview
 
@@ -10,8 +10,8 @@ EbnigmaApps ("we", "us"). This policy explains what data the app handles and how
 
 The short version: **Archy has no user accounts, contains no advertising, and
 uses no analytics or tracking. Your scoring data lives on your device. We do
-not collect, sell, or transmit your personal data to us or to any third
-party.**
+not collect or sell it. An optional cloud relay receives only encrypted round
+traffic and the network information needed to carry it, as described below.**
 
 ## 1. Data stored on your device
 
@@ -23,16 +23,19 @@ sent to us. This includes:
 - Custom scoring systems you create
 - Statistics derived from your scoring history
 - App settings and preferences
+- If you turn on activity tracking for a round: your step count, walking
+  distance, elevation gain, and GPS route for that round (see section 3a)
 
 This data stays on your device unless **you** choose to export or share it (see
 sections 3 and 4). Uninstalling the app removes this data from your device.
 
 ## 2. Data Collection
 
-**None.** Archy does not create an account for you, does not require you to log
-in, and does not contain any analytics, crash-reporting, advertising, or
-tracking software. We have no servers that receive your personal scoring data,
-and we do not build user profiles.
+Archy does not create an account for you, require you to log in, or contain
+analytics, crash-reporting, advertising, or tracking software. We do not
+receive readable scoring content and do not build user profiles. If you choose
+an internet relay, that server necessarily receives your IP address and
+encrypted traffic while it routes the round; details are below.
 
 ## 3. Optional networking features (you initiate all of them)
 
@@ -55,14 +58,15 @@ cloud relay server. In both cases:
   the duration of the round and is evicted after a period of inactivity.
   Nothing is written to disk and nothing is persisted after the round ends.
 
-**The default cloud relay is operated by us (EbnigmaApps)** for convenience.
-Because it is a zero-knowledge relay, we cannot see your scoring data. As with
-any internet server, when your device connects to the relay the relay (and its
-hosting provider) necessarily receives your device's IP address in order to
-route the connection; this is used only to forward the encrypted traffic and is
-not used to identify you or combined with your scoring data. If you prefer, you
-can run your own relay and point the app at it in Settings, or avoid the cloud
-relay entirely by hosting live rounds over your local network.
+Cloud relay availability depends on the build you installed. A distributor can
+configure a built-in relay at build time; otherwise cloud rounds stay disabled
+until you enter a self-hosted relay URL in Settings. Settings always shows which
+case applies. If an official Archy build includes a built-in relay, it is
+operated by EbnigmaApps. Because it is zero-knowledge, we cannot see your
+scoring content. The relay and its hosting provider necessarily receive your IP
+address to route the connection; it is not used to build a profile or combined
+with scoring content. You can always self-host, use LAN/Nearby instead, or avoid
+network rounds entirely.
 
 ### Nearby device-to-device connection and Wear OS sync
 Archy can connect directly to a nearby device (via Bluetooth / Wi-Fi) or to a
@@ -72,6 +76,22 @@ connection between your own devices/participants; the data is not routed to us.
 ### Offline QR transfer
 You can move a finished session to another device by displaying and scanning
 QR codes. This involves no network at all.
+
+## 3a. Optional activity tracking (off by default)
+
+You can choose to record your walk during a round — steps, distance,
+elevation gain, and the GPS route. This is **off by default** and enabled per
+round; while recording, Android shows a persistent notification.
+
+- All recorded location and motion data is **stored only on your device** and
+  is never transmitted to us or anyone else.
+- Live group rounds and the QR codes you share with other archers **never
+  contain your route or steps** — only your own full backups and the transfer
+  between your own watch and phone carry them.
+- The shareable result image shows at most the aggregate numbers (steps,
+  distance, elevation) that are visible in its preview, never the route.
+- Deleting a session deletes its recorded activity; uninstalling the app
+  removes everything.
 
 ## 4. Data export and sharing
 
@@ -92,9 +112,23 @@ features above:
   physical location.
 - **Wake lock** — to keep the screen usable while scoring or in Wear OS ambient
   mode.
+- **Location** (only if you turn on activity tracking for a round) — to record
+  your walking route and elevation during that round. Recording runs as a
+  visible foreground service so it keeps working with the screen off; Archy
+  does not request background location. The route is stored only on your
+  device (see section 3a).
+- **Physical activity** (only if you turn on activity tracking) — to count
+  your steps during the round via the device's step sensor. Stored only on
+  your device.
 - **Camera** (when you use it) — to scan QR codes for joining a round or
-  importing a session. Camera images are used only for on-device QR scanning
-  and are not stored or transmitted.
+  importing a session, or to take a shooter photo. QR camera images are used
+  only for on-device scanning and are not stored or transmitted; a shooter
+  photo is copied only into Archy's private on-device storage.
+- **Photo library** (when you use it) — to choose a shooter photo. Archy copies
+  only the image you select into its private on-device storage.
+- **Local network** (when you start a LAN round) — to host or join a live group
+  round over Wi-Fi or a hotspot. This access is not used for discovery or
+  tracking outside that user-initiated round.
 
 ## 6. Children's privacy
 
