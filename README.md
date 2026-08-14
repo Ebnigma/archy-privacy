@@ -1,7 +1,7 @@
 # Privacy Policy
 **Archy** - The Archer's best friend
 
-Last updated: 11 July 2026
+Last updated: 12 August 2026
 
 # Overview
 
@@ -44,6 +44,13 @@ direct device-to-device connection, and are only active when **you** start
 them:
 
 ### Live group rounds (LAN or cloud relay)
+
+**Not available in the current release.** Live shared rounds are switched off
+while the feature is being reworked, so this build never contacts a relay and
+never opens a round to other devices. The description below applies to
+releases in which the feature is enabled again; it is kept here so the policy
+does not have to change under you when it returns.
+
 You can score a round together with other archers. You may host over your
 local network / hotspot (fully offline, no internet), or connect through a
 cloud relay server. In both cases:
@@ -68,14 +75,28 @@ address to route the connection; it is not used to build a profile or combined
 with scoring content. You can always self-host, use LAN/Nearby instead, or avoid
 network rounds entirely.
 
-### Nearby device-to-device connection and Wear OS sync
-Archy can connect directly to a nearby device (via Bluetooth / Wi-Fi) or to a
-paired Wear OS watch to transfer or mirror a scoring session. This is a direct
-connection between your own devices/participants; the data is not routed to us.
+### Wear OS sync and handing a round to another device
 
-### Offline QR transfer
-You can move a finished session to another device by displaying and scanning
-QR codes. This involves no network at all.
+Archy communicates with your own paired Wear OS watch to transfer or mirror a
+scoring session. It can also hand a finished round to another phone over your
+local Wi-Fi or hotspot: the sending device opens a short-lived connection on
+the local network, the receiving device scans a QR code carrying the address
+and an encryption key, and the round moves directly between the two devices.
+Both are direct connections between the devices involved — nothing is routed
+through a server of ours, and the transferred round is encrypted with a key
+that exists only inside that QR code.
+
+Direct Bluetooth / Wi-Fi Direct connections to a nearby device (Nearby
+Connections) belong to the live-round feature that is switched off in the
+current release. **This release requests no Bluetooth or nearby-device
+permissions at all.**
+
+### Sending a round as a file
+You can move a finished session to another device by sending it as a
+`.archysession` file through your device's share sheet (Quick Share, mail,
+saving to files). This involves no server of ours: the file goes exactly
+where you send it. Archy can also open such a file it receives from another
+app; the contents are imported locally after you confirm the preview.
 
 ## 3a. Optional activity tracking (off by default)
 
@@ -105,11 +126,10 @@ it. We are not involved in and have no access to those exports.
 Archy requests certain Android permissions only to support the optional
 features above:
 
-- **Internet / Network state** — for optional live rounds via a relay.
-- **Bluetooth, Wi-Fi, and Nearby Wi-Fi devices** — for direct device-to-device
-  live rounds and transfers via Nearby Connections. Archy declares these scan
-  permissions as **"never used for location"** and does **not** access your
-  physical location.
+- **Internet / Network state** — to open the local-network connection used when
+  you hand a round to another device (section 3), and for the Google Play
+  Services component that decodes QR codes. This release contacts no server of
+  ours.
 - **Wake lock** — to keep the screen usable while scoring or in Wear OS ambient
   mode.
 - **Location** (only if you turn on activity tracking for a round) — to record
@@ -126,9 +146,14 @@ features above:
   photo is copied only into Archy's private on-device storage.
 - **Photo library** (when you use it) — to choose a shooter photo. Archy copies
   only the image you select into its private on-device storage.
-- **Local network** (when you start a LAN round) — to host or join a live group
+- **Local network** (when you hand a round to another device) — to transfer the
   round over Wi-Fi or a hotspot. This access is not used for discovery or
-  tracking outside that user-initiated round.
+  tracking outside that transfer you started.
+
+This release does **not** request Bluetooth or nearby-device permissions. They
+belong to the live group rounds described in section 3 and will return only in
+a release that switches that feature back on; if that happens, this policy and
+the permission list here are updated in the same release.
 
 ## 6. Children's privacy
 
@@ -139,9 +164,9 @@ personal information from anyone, including children.
 
 Archy does not include advertising or analytics SDKs and does not share your
 data with third parties. Standard platform components (e.g. Google Play
-Services for Nearby Connections and Wear OS communication) are used only to
-enable the optional connectivity features described above and operate under
-their own providers' terms.
+Services for Wear OS communication and for decoding QR codes) are used only to
+enable the features described above and operate under their own providers'
+terms.
 
 ## 8. Changes to this policy
 
