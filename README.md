@@ -1,7 +1,7 @@
 # Privacy Policy
 **Archy** - The Archer's best friend
 
-Last updated: 12 August 2026
+Last updated: 9 October 2026
 
 # Overview
 
@@ -140,6 +140,11 @@ features above:
 - **Physical activity** (only if you turn on activity tracking) — to count
   your steps during the round via the device's step sensor. Stored only on
   your device.
+- **Notifications** (Android phones, when you enable lock-screen scores in
+  Settings) — to display names, scores and completed targets or ends for active
+  rounds. These notifications use local data only. Their content is visible on
+  the lock screen according to your Android notification settings; disable the
+  option to remove them. No push service or server is involved.
 - **Camera** (when you use it) — to scan QR codes for joining a round or
   importing a session, or to take a shooter photo. QR camera images are used
   only for on-device scanning and are not stored or transmitted; a shooter
@@ -173,6 +178,12 @@ terms.
 If this policy changes, we will update the "Last updated" date above and post
 the revised policy at the same URL. Continued use of the app after changes
 constitutes acceptance of the updated policy.
+
+Latest change (9 October 2026): Added the notification permission explanation
+for optional Android lock-screen scores in section 5, including the names,
+scores and round progress displayed, visibility according to Android's
+lock-screen settings, and local-only processing without a push service or
+server.
 
 ## 9. Contact
 
